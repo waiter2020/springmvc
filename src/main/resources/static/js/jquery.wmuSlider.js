@@ -1,4 +1,4 @@
-/*!
+ /*!
  * jQuery wmuSlider v2.1
  * 
  * Copyright (c) 2011 Brice Lechatellier

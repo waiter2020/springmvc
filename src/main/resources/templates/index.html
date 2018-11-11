@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Home</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Inspired Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
-<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.proxy.ustclug.org/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" th:src="@{js/move-top.js}"></script>
+<script type="text/javascript" th:src="@{js/easing.js}"></script>
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {
 						$(".scroll").click(function(event){		
@@ -31,53 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--header-->
-	<div class="container">
-	<div class="header">
-		<div class="header-top">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" ></a>
-			</div>
-			<div class="header-top-on">
-				<ul class="social-in">
-					<li><span>Share This Page:</span></li>
-					<li><a href="#"><i> </i></a></li>						
-					<li><a href="#"><i class="tin"> </i></a></li>
-					<li><a href="#"><i class="message"> </i></a></li>
-					<li><a href="#"><i class="youtube"> </i></a></li>
-				</ul>
-			</div>
-				<div class="clearfix"> </div>
-			</div>
-			<!---->
-			<div class="header-bottom">
-				<div class="top-nav">
-					<span class="menu"> </span>
-					<ul>
-						<li class="active" ><a href="index.html" >HOME  </a> </li>
-						<li><a href="events.html" data-hover="EVENTS" > EVENTS</a></li>
-						<li><a href="404.html" data-hover="WINNERS"> WINNERS </a></li>
-						<li><a href="contact.html" data-hover="SUBMIT"> SUBMIT</a></li>
-						<li><a href="contact.html" data-hover="CONTACT">CONTACT </a></li>
-						<li><a href="login.html" data-hover="LOGIN">LOGIN </a></li>
-					</ul>
-					<!--script-->
-				<script>
-					$("span.menu").click(function(){
-						$(".top-nav ul").slideToggle(500, function(){
-						});
-					});
-			</script>
-				</div>
-					<div class="search">
-						<form>
-							<input type="text" value="Search.." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}" >
-							<input type="submit" value="">
-						</form>
-					</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-</div>
+	<div th:replace="common/top::topbar(activeUri='index')"></div>
 		<!---->
 		<div class="container">
 			<div class="banner">
@@ -94,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				   <div class="wmuSliderWrapper">
 					   <article style="position: absolute; width: 100%; opacity: 0;">
 							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="images/banner.jpg" alt=""  /></a>
+								<a href="single.html"><img class="img-responsive line-in" src="/images/banner.jpg" alt=""  /></a>
 								<div class="dummy-text">
 									<ul class="social-circle">			
 										<li><a href="single.html"><i > </i></a></li>
@@ -111,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 	</article>
 					 	 <article style="position: absolute; width: 100%; opacity: 0;">
 							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="images/banner1.jpg" alt=""  /></a>
+								<a href="single.html"><img class="img-responsive line-in" src="/images/banner1.jpg" alt=""  /></a>
 								<div class="dummy-text">
 									<ul class="social-circle">			
 										<li><a href="single.html"><i > </i></a></li>
@@ -128,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 	</article>
 					 	 <article style="position: absolute; width: 100%; opacity: 0;">
 							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="images/banner.jpg" alt=""  /></a>
+								<a href="single.html"><img class="img-responsive line-in" src="/images/banner.jpg" alt=""  /></a>
 								<div class="dummy-text">
 									<ul class="social-circle">			
 										<li><a href="single.html"><i > </i></a></li>
@@ -146,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 	               
 	            </div>
-	            <script src="js/jquery.wmuSlider.js"></script>
+	            <script th:src="@{/js/jquery.wmuSlider.js}"></script>
 				<script>				
 					 $('.example1').wmuSlider({
 						 pagination:false,
@@ -168,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="content-bottom">
 					<div class="col-md-6 top-pic">
 						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic.jpg" alt=""  /></a>
+						<a href="single"><img class="img-responsive " src="/images/pic.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Jane Doe</h6>
@@ -178,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-6 top-pic">
 					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic1.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic1.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Anne Other</h6>
@@ -191,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="content-bottom">
 					<div class="col-md-6 top-pic">
 						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic2.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic2.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Joe Bloggs</h6>
@@ -201,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-6 top-pic">
 					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic3.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic3.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>John Somebody</h6>
@@ -214,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="content-bottom">
 					<div class="col-md-6 top-pic">
 						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic4.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic4.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Timothy Consecteur</h6>
@@ -224,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-6 top-pic">
 					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic5.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic5.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Laura Ipsum</h6>
@@ -237,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="content-bottom">
 					<div class="col-md-6 top-pic">
 						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic6.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic6.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Pierre Lorem</h6>
@@ -247,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-6 top-pic">
 					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="images/pic7.jpg" alt=""  /></a>
+						<a href="single.html"><img class="img-responsive " src="/images/pic7.jpg" alt=""  /></a>
 						</div>
 						<div class="col-md-6 bottom-doe">
 						<h6>Wan More</h6>
@@ -260,102 +216,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<i class="line"> </i>
 				<!---->
-				<div class="bottom-content">
-					<div class="col-md-6 award">
-						<h3>awi awards ceremony</h3>						
-						<p>The ‘Award The Inspired’ awards ceremony. The Fuji Film Gallery, Holland. </p>
-						<div class="inverted">
-							<p class="date">4th October to 12 October 2012 10am to 4pm.</p>                       
-							<a href="single.html" class="only">Invitation Only</a>
-							<div class="clearfix"> </div>
-						</div>
-						<a href="single.html"><img class="img-responsive " src="images/po.jpg" alt=""  />
-						<div class="share">
-							<p>Share <i class="down"> </i></p>
-							<ul class="social-in tin-in">
-								<li><i> </i></li>						
-								<li><i class="tin"> </i></li>
-								<li><i class="message"> </i></li>
-							</ul>
-							</a>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-6 award-bottom">
-						<h3>Have You Been Invited?</h3>
-						<p>If you have an awards ceremony invitation code, please enter it along with your e-mail address in the form below.</p>
-						<form >					    	
-						   <input type="text" value="Your E-mail..">
-						   <input type="text" value="Invitation Code..">
-						   <input type="submit" value="Submit RSVP">	
-						   </form>
-						   <p><a href="single.html">Don’t have an invitation?</a></p>
-						   <a href="index.html" class="logo-bottom"><img src="images/logo-1.png" alt="" ></a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-		<!---->
-	
-		<div class="container">
-		<div class="footer">
-			<div class="footer-top">
-				<div class="col-md-4 amet-sed">
-				<h4>navigation</h4>
-				<i class="line"> </i>
-					<ul class="nav-bottom">
-						<li  ><a href="index.html" >HOME  </a> </li>
-						<li><a href="events.html" > EVENTS</a></li>
-						<li><a href="404.html"> WINNERS </a></li>
-						<li><a href="contact.html" > SUBMIT</a></li>
-						<li><a href="contact.html">CONTACT </a></li>
-						<li><a href="login.html">LOGIN </a></li>
-						<li  ><a href="#" >RSVP</a> </li>
-						<li><a href="#" >PRIVACY POLICY</a></li>
-					</ul>
-				</div>
-				<div class="col-md-4 amet-sed ">
-				<h4>get in touch</h4>
-				<i class="line"> </i>
-					<ul class="nav-bottom">
-						<li  ><a href="contact.html" >CONTACT US</a> </li>
-						<li><a href="#" >PRIVACY POLICY</a></li>
-						<li><a href="#">TERMS &amp; CONDITIONS </a></li>					
-					</ul>
-					<p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
-				</div>
-				<div class="col-md-4 amet-sed ">
-				<h4>share this page</h4>
-				<i class="line"> </i>
-				<ul class="social-in msg-social">
-					<li><a href="#"><i> </i></a></li>						
-					<li><a href="#"><i class="tin"> </i></a></li>
-					<li><a href="#"><i class="message"> </i></a></li>
-					<li><a href="#"><i class="youtube"> </i></a></li>
-				</ul>
-				<p>follow us on twitter:<a href="#">@example</a></p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-				<p class="footer-class">Copyright &copy; 2015.Company name All rights reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-		</div>
-		 <script type="text/javascript">
-						$(document).ready(function() {
-							/*
-							var defaults = {
-					  			containerID: 'toTop', // fading element id
-								containerHoverID: 'toTopHover', // fading element hover id
-								scrollSpeed: 1200,
-								easingType: 'linear' 
-					 		};
-							*/
-							
-							$().UItoTop({ easingType: 'easeOutQuart' });
-							
-						});
-					</script>
-				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	</div>
+				<!--<div class="bottom-content">-->
+					<!--<div class="col-md-6 award">-->
+						<!--<h3>awi awards ceremony</h3>						-->
+						<!--<p>The ‘Award The Inspired’ awards ceremony. The Fuji Film Gallery, Holland. </p>-->
+						<!--<div class="inverted">-->
+							<!--<p class="date">4th October to 12 October 2012 10am to 4pm.</p>                       -->
+							<!--<a href="single.html" class="only">Invitation Only</a>-->
+							<!--<div class="clearfix"> </div>-->
+						<!--</div>-->
+						<!--<a href="single.html"><img class="img-responsive " src="/images/po.jpg" alt=""  />-->
+						<!--<div class="share">-->
+							<!--<p>Share <i class="down"> </i></p>-->
+							<!--<ul class="social-in tin-in">-->
+								<!--<li><i> </i></li>						-->
+								<!--<li><i class="tin"> </i></li>-->
+								<!--<li><i class="message"> </i></li>-->
+							<!--</ul>-->
+							<!--</a>-->
+							<!--<div class="clearfix"> </div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="col-md-6 award-bottom">-->
+						<!--<h3>Have You Been Invited?</h3>-->
+						<!--<p>If you have an awards ceremony invitation code, please enter it along with your e-mail address in the form below.</p>-->
+						<!--<form >					    	-->
+						   <!--<input type="text" value="Your E-mail..">-->
+						   <!--<input type="text" value="Invitation Code..">-->
+						   <!--<input type="submit" value="Submit RSVP">	-->
+						   <!--</form>-->
+						   <!--<p><a href="single.html">Don’t have an invitation?</a></p>-->
+						   <!--<a href="index.html" class="logo-bottom"><img src="/images/logo-1.png" alt="" ></a>-->
+					<!--</div>-->
+					<!--<div class="clearfix"> </div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;&ndash;&gt;-->
+
+	<div th:replace="common/footer::footer"></div>
 </body>
 </html>
