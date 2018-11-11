@@ -146,25 +146,25 @@
 			<h1 class="category"><a name="basic"></a>Basic</h1>
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/simple">简单示例 <span>Simple example</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/simple.jsp">简单示例 <span>Simple example</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/full">完整示例 <span>Full example</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/full.jsp">完整示例 <span>Full example</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/use-requirejs">使用 Require.js <span>Using Require.js</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/use-requirejs.jsp">使用 Require.js <span>Using Require.js</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/use-seajs">使用 Sea.js <span>Using Seajs</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/use-seajs.jsp">使用 Sea.js <span>Using Seajs</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/use-zepto">使用 Zepto.js <span>Using Zepto.js</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/use-zepto.jsp">使用 Zepto.js <span>Using Zepto.js</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/form-get-value">表单取值 <span>Get textarea value in form</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/form-get-value.jsp">表单取值 <span>Get textarea value in form</span></a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/html-preview-markdown-to-html">非编辑时 Markdown 转 HTML 的显示处理 <span>Markdown to HTML for preview</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/html-preview-markdown-to-html.jsp">非编辑时 Markdown 转 HTML 的显示处理 <span>Markdown to HTML for preview</span></a>
 				</li>
 			</ul>
 			<h1 class="category">
@@ -242,7 +242,7 @@
 			</h1>
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath}/editor/examples/html-tags-decode">识别和（过滤）解析 HTML 标签 <span>HTML tags (fliter) decode</span></a>
+					<a href="${pageContext.request.contextPath}/editor/examples/html-tags-decode.jsp">识别和（过滤）解析 HTML 标签 <span>HTML tags (fliter) decode</span></a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/editor/examples/toc.html">自动生成目录(下拉菜单) ToC / ToCM <span>Table of Contents (ToC)</span></a>

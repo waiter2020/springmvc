@@ -11,15 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class HelloController {
+
     @RequestMapping(value = {"/","/index"})
-    public ModelAndView hello(ModelAndView modelAndView){
-        modelAndView.setViewName("editor/examples/index");
-        return modelAndView;
+    public String hello(){
+
+        return "index";
     }
 
-    @RequestMapping(value = {"/html"})
-    public String hell(){
 
-        return "index.html";
-    }
 }

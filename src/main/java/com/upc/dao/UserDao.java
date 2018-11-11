@@ -53,8 +53,8 @@ public interface UserDao {
 
     int insertUsers(List<User> users);
 
-    int insertUserRoles( List<User> users);
-
+    int insertUsersRoles( List<User> users);
+    int insertUserRoles( User user);
 
     /**
      * 修改数据

@@ -6,6 +6,10 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="enable" column="enable"/>
     </resultMap>
 
     <resultMap id="UserRoleMap" type="com.upc.model.User" extends="UserMap">
@@ -17,7 +21,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          id, user_name, password
+          id, user_name, password ,nick_name,email,enable,phone
         from springmvc.user
         where id = #{id}
     </select>
@@ -25,14 +29,14 @@
     <!--关联查询用户和角色-->
     <select id="queryUserAndRoleById" resultMap="UserRoleMap">
         select
-               u.id, u.user_name, u.password
+               u.*
         from springmvc.user u
         where u.id = #{id}
     </select>
 
     <select id="findByUserName" resultMap="UserRoleMap">
         select
-               u.id, u.user_name, u.password
+               u.*
         from springmvc.user u
         where u.user_name = #{userName}
     </select>
@@ -40,7 +44,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          id, user_name, password
+          *
         from springmvc.user
         limit #{offset}, #{limit}
     </select>
@@ -48,7 +52,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, user_name, password
+          *
         from springmvc.user
         <where>
             <if test="id != null">
@@ -60,24 +64,27 @@
             <if test="password != null and password != ''">
                 and password = #{password}
             </if>
+            <if test="nickName != null and nickName != ''">
+                and nick_name = #{nickName}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into springmvc.user(user_name, password)
-        values (#{userName}, #{password})
+        insert into springmvc.user(user_name, password,nick_name,phone,enable,email)
+        values (#{userName}, #{password},#{nickName},#{phone},1,#{email})
     </insert>
 
     <insert id="insertUsers" parameterType="java.util.List" keyProperty="id" useGeneratedKeys="true">
-        insert into springmvc.user(user_name, password)
+        insert into springmvc.user(user_name, password,nick_name,phone,enable,email)
         values
         <foreach collection="list" item="user" separator=",">
-            (#{user.userName}, #{user.password})
+            (#{user.userName}, #{user.password},#{user.nickName},#{user.phone},1,#{user.email})
         </foreach>
     </insert>
 
-    <insert id="insertUserRoles" >
+    <insert id="insertUsersRoles" >
         INSERT INTO springmvc.user_role(user_id, role_id)
         VALUES 
                <foreach collection="list" item="user" separator=",">
@@ -86,6 +93,17 @@
                    </foreach>
                </foreach>
     </insert>
+
+    <insert id="insertUserRoles" >
+        INSERT INTO springmvc.user_role(user_id, role_id)
+        VALUES
+
+            <foreach collection="user.roles" separator="," item="role" >
+                (#{user.id},#{role.id})
+            </foreach>
+
+    </insert>
+
     <!--通过主键修改数据-->
     <update id="update">
         update springmvc.user
@@ -95,6 +113,18 @@
             </if>
             <if test="password != null and password != ''">
                 password = #{password},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="enable != null ">
+                enable = #{enable},
             </if>
         </set>
         where id = #{id}

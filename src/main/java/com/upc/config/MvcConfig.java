@@ -28,19 +28,21 @@ public class MvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login.jsp");
+        registry.addViewController("/index").setViewName("index.jsp");
+        registry.addViewController("/edit/edit").setViewName("edit/edit.jsp");
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/edit/edit").setViewName("edit/edit");
-        registry.addViewController("/index").setViewName("index.html");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/register").setViewName("register");
 
-        registry.addViewController("/editor/examples/index").setViewName("editor/examples/index");
-        registry.addViewController("/editor/examples/simple").setViewName("editor/examples/simple");
-        registry.addViewController("/editor/examples/full").setViewName("editor/examples/full");
-        registry.addViewController("/editor/examples/use-requirejs").setViewName("editor/examples/use-requirejs");
-        registry.addViewController("/editor/examples/use-seajs").setViewName("editor/examples/use-seajs");
-        registry.addViewController("/editor/examples/use-zepto").setViewName("editor/examples/use-zepto");
-        registry.addViewController("/editor/examples/form-get-value").setViewName("editor/examples/form-get-value");
-        registry.addViewController("/editor/examples/html-preview-markdown-to-html").setViewName("editor/examples/html-preview-markdown-to-html");
+        registry.addViewController("/editor/examples/index").setViewName("editor/examples/index.jsp");
+        registry.addViewController("/editor/examples/simple").setViewName("editor/examples/simple.jsp");
+        registry.addViewController("/editor/examples/full").setViewName("editor/examples/full.jsp");
+        registry.addViewController("/editor/examples/use-requirejs").setViewName("editor/examples/use-requirejs.jsp");
+        registry.addViewController("/editor/examples/use-seajs").setViewName("editor/examples/use-seajs.jsp");
+        registry.addViewController("/editor/examples/use-zepto").setViewName("editor/examples/use-zepto.jsp");
+        registry.addViewController("/editor/examples/form-get-value").setViewName("editor/examples/form-get-value.jsp");
+        registry.addViewController("/editor/examples/html-preview-markdown-to-html").setViewName("editor/examples/html-preview-markdown-to-html.jsp");
 
 
 
@@ -55,13 +57,14 @@ public class MvcConfig implements WebMvcConfigurer {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
         internalResourceViewResolver.setViewClass(JstlView.class);
         internalResourceViewResolver.setPrefix("/WEB-INF/");
-        internalResourceViewResolver.setSuffix(".jsp");
-        internalResourceViewResolver.setOrder(2);
+        internalResourceViewResolver.setSuffix("");
+        internalResourceViewResolver.setViewNames("*.jsp");
+        internalResourceViewResolver.setOrder(1);
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
         thymeleafViewResolver.setTemplateEngine(templateEngine);
-        thymeleafViewResolver.setViewNames(new String[]{"*.html"});
-        thymeleafViewResolver.setOrder(1);
+//        thymeleafViewResolver.setViewNames(new String[]{"*.html"});
+        thymeleafViewResolver.setOrder(2);
         ContentNegotiatingViewResolver contentNegotiatingViewResolver = new ContentNegotiatingViewResolver();
 
         List<ViewResolver> viewResolvers = new ArrayList<>();
@@ -95,6 +98,10 @@ public class MvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
+
         registry.addResourceHandler("/editor/css/**").addResourceLocations("/WEB-INF/editor/css/");
         registry.addResourceHandler("/editor/js/**").addResourceLocations("/WEB-INF/editor/js/");
         registry.addResourceHandler("/editor/*.js").addResourceLocations("/WEB-INF/editor/");

@@ -106,7 +106,9 @@ public void testDeleteById() throws Exception {
 */ 
 @Test
 public void testQueryUserAndRoleById() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
+    User user = userService.queryUserAndRoleById(1);
+    System.out.println(user);
 } 
 
 /** 

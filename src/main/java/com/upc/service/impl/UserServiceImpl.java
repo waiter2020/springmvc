@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     @Override
     public User insert(User user) {
         this.userDao.insert(user);
+        userDao.insertUserRoles(user);
         return user;
     }
 
@@ -88,6 +89,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     public User update(User user) {
 
         this.userDao.update(user);
+        userDao.insertUserRoles(user);
         return this.queryById(user.getId());
     }
 
@@ -110,13 +112,29 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     @Override
     public int insertUsers(List<User> users) {
         int i = userDao.insertUsers(users);
-        userDao.insertUserRoles(users);
+        userDao.insertUsersRoles(users);
         return i;
     }
 
     @Override
     public User findByUserName(String userName) {
         return userDao.findByUserName(userName);
+    }
+
+    @Override
+    public User save(User user) {
+        User insert;
+        if (user.getId()==null){
+            insert = insert(user);
+        }else {
+            insert = update(user);
+        }
+        return insert;
+    }
+
+    @Override
+    public void saveAll(Iterable<User> users) {
+        users.forEach(this::save);
     }
 
 

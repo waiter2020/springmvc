@@ -23,8 +23,16 @@ public class User implements Serializable , UserDetails {
     private Integer id;
     
     private String userName;
-    
+
+    private String nickName;
+
     private String password;
+
+    private String phone;
+
+    private String email;
+
+    private Boolean enable;
 
     private List<Role> roles ;
 
@@ -55,6 +63,6 @@ public class User implements Serializable , UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enable;
     }
 }
