@@ -43,48 +43,82 @@
 
     </bean>
 
-    <!--mybatis的DAO接口扫描配置-->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
-        <property name="basePackage" value="com.**.dao"/>
-    </bean>
-    <!--mybatis的数据库会话工厂-->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations">
-            <array>
-                <value>classpath:com/**/*.xml</value>
-                <value>classpath:mapper/*.xml</value>
-            </array>
+
+
+    <!--&lt;!&ndash;mybatis的DAO接口扫描配置&ndash;&gt;-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="annotationClass" value="org.apache.ibatis.annotations.Mapper"/>-->
+        <!--<property name="basePackage" value="com.**.dao"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;mybatis的数据库会话工厂&ndash;&gt;-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="mapperLocations">-->
+            <!--<array>-->
+                <!--<value>classpath:com/**/*.xml</value>-->
+                <!--<value>classpath:mapper/*.xml</value>-->
+            <!--</array>-->
+        <!--</property>-->
+        <!--<property name="typeAliasesPackage" value="com.upc.model"/>-->
+        <!--<property name="plugins">-->
+            <!--<array>-->
+                <!--&lt;!&ndash;PageHelper分页插件配置&ndash;&gt;-->
+                <!--<bean class="com.github.pagehelper.PageInterceptor">-->
+                    <!--&lt;!&ndash; 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 &ndash;&gt;-->
+                    <!--<property name="properties">-->
+                        <!--<value>-->
+                            <!--helperDialect=mysql-->
+                            <!--reasonable=true-->
+                            <!--supportMethodsArguments=true-->
+                            <!--params=count=countSql-->
+                            <!--autoRuntimeDialect=true-->
+                        <!--</value>-->
+                    <!--</property>-->
+                <!--</bean>-->
+            <!--</array>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--JPA配置-->
+    <!-- spring整合JPA -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!--指定JPA扫描的实体类所在的包-->
+        <property name="packagesToScan" value="com.**.model" />
+
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <!-- 自动建表 -->
+                <property name="generateDdl" value="true" />
+                <property name="database" value="MYSQL" />
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+                <property name="showSql" value="true" />
+            </bean>
         </property>
-        <property name="typeAliasesPackage" value="com.upc.model"/>
-        <property name="plugins">
-            <array>
-                <!--PageHelper分页插件配置-->
-                <bean class="com.github.pagehelper.PageInterceptor">
-                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
-                    <property name="properties">
-                        <value>
-                            helperDialect=mysql
-                            reasonable=true
-                            supportMethodsArguments=true
-                            params=count=countSql
-                            autoRuntimeDialect=true
-                        </value>
-                    </property>
-                </bean>
-            </array>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.physical_naming_strategy">com.upc.component.SpringPhysicalNamingStrategy
+                </prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+            </props>
         </property>
     </bean>
+
     <!-- 配置事务管理器 -->
     <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="dataSource" ref="dataSource" />
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <!-- 注解方式配置事务 -->
-    <!--<tx:annotation-driven proxy-target-class="true" />-->
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
 
     <!-- 拦截器方式配置事物 -->
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">

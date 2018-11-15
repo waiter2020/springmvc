@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -15,11 +16,14 @@ import java.util.List;
  * @since 2018-11-08 20:44:56
  */
 @Data
+@Entity
 public class User implements Serializable , UserDetails {
     private static final long serialVersionUID = -60781486773939584L;
     /**
      * 用户id
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
     private String userName;
@@ -34,6 +38,10 @@ public class User implements Serializable , UserDetails {
 
     private Boolean enable;
 
+    @ManyToMany
+    @JoinTable(name = "user_role",
+    joinColumns = {@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles ;
 
     @Override

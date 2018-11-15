@@ -1,7 +1,8 @@
 package com.upc.service.impl;
 
+import com.upc.dao.RoleRepository;
 import com.upc.model.Role;
-import com.upc.dao.RoleDao;
+
 import com.upc.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,10 @@ import java.util.List;
  */
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
-    private final RoleDao roleDao;
+    private final RoleRepository roleDao;
 
     @Autowired
-    public RoleServiceImpl(RoleDao roleDao) {
+    public RoleServiceImpl(RoleRepository roleDao) {
         this.roleDao = roleDao;
     }
 
@@ -32,44 +33,14 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Role queryById(Integer id) {
-        return this.roleDao.queryById(id);
+        return this.roleDao.findOneById(id);
     }
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
     @Override
-    public List<Role> queryAllByLimit(int offset, int limit) {
-        return this.roleDao.queryAllByLimit(offset, limit);
+    public Role save(Role role) {
+       return roleDao.save(role);
     }
 
-    /**
-     * 新增数据
-     *
-     * @param role 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public Role insert(Role role) {
-        this.roleDao.insert(role);
-        return role;
-    }
-
-    /**
-     * 修改数据
-     *
-     * @param role 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public Role update(Role role) {
-        this.roleDao.update(role);
-        return this.queryById(role.getId());
-    }
 
     /**
      * 通过主键删除数据
@@ -78,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.roleDao.deleteById(id) > 0;
+    public void deleteById(Integer id) {
+         this.roleDao.deleteById(id);
     }
 }

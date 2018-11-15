@@ -40,7 +40,7 @@ public class UserController {
     @ResponseBody
     @GetMapping("selectOne")
     public User selectOne(Integer id) {
-        return this.userService.queryUserAndRoleById(id);
+        return this.userService.queryById(id);
     }
 
     @PostMapping(value = "/registeraction")

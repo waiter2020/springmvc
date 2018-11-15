@@ -1,5 +1,8 @@
 package impl;
 
+
+import com.upc.dao.RoleRepository;
+import com.upc.dao.UserRepository;
 import com.upc.model.Role;
 import com.upc.model.User;
 import com.upc.service.UserService;
@@ -58,10 +61,14 @@ public void testQueryById() throws Exception {
 * 
 * Method: queryAllByLimit(int offset, int limit) 
 * 
-*/ 
+*/
+@Autowired
+private RoleRepository roleDao;
 @Test
 public void testQueryAllByLimit() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
+    Role role = roleDao.findOneById(1);
+    System.out.println(role);
 } 
 
 /** 
@@ -86,17 +93,29 @@ public void testUpdate() throws Exception {
 //TODO: Test goes here...
     User user = userService.queryById(1);
     user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-    userService.update(user);
+    userService.save(user);
 } 
 
 /** 
 * 
 * Method: deleteById(Integer id) 
 * 
-*/ 
+*/
+    @Autowired
+    private UserRepository userRepository;
 @Test
 public void testDeleteById() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
+    List<User> all = userRepository.findAll();
+    System.out.println(all);
+    User byUserName = userService.findByUserName("123456");
+    System.out.println(byUserName);
+//    User user = new User();
+//    user.setUserName("123456");
+//    user.setPassword(bCryptPasswordEncoder.encode("123456"));
+//    user.setEmail("123456@qq.com");
+//    user.setEnable(true);
+//    userRepository.save(user);
 } 
 
 /** 
@@ -107,7 +126,7 @@ public void testDeleteById() throws Exception {
 @Test
 public void testQueryUserAndRoleById() throws Exception { 
 //TODO: Test goes here...
-    User user = userService.queryUserAndRoleById(1);
+    User user = userService.queryById(1);
     System.out.println(user);
 } 
 
@@ -131,8 +150,8 @@ public void testInsertUsers() throws Exception {
         user.setRoles(roles);
         users.add(user);
     }
-    int i = userService.insertUsers(users);
-    System.out.println(i);
+    userService.saveAll(users);
+
 } 
 
 

@@ -1,7 +1,7 @@
 package com.upc.service.impl;
 
+import com.upc.dao.UserRepository;
 import com.upc.model.User;
-import com.upc.dao.UserDao;
 import com.upc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * (User)表服务实现类
@@ -22,10 +23,10 @@ import java.util.List;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService , UserDetailsService {
-    private final UserDao userDao;
+    private final UserRepository userDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserRepository userDao) {
         this.userDao = userDao;
     }
 
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),user.isEnabled(),user.isAccountNonExpired(),user.isCredentialsNonExpired(),user.isAccountNonLocked(),user.getAuthorities());
     }
 
+
     /**
      * 通过ID查询单条数据
      *
@@ -50,7 +52,11 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     @Override
     public User queryById(Integer id) {
         System.out.println("访问");
-        return this.userDao.queryById(id);
+        Optional<User> byId = this.userDao.findById(id);
+        if (!byId.isPresent()){
+            return null;
+        }
+        return byId.get();
     }
 
     /**
@@ -60,10 +66,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    @Override
-    public List<User> queryAllByLimit(int offset, int limit) {
-        return this.userDao.queryAllByLimit(offset, limit);
-    }
+
 
     /**
      * 新增数据
@@ -72,26 +75,12 @@ public class UserServiceImpl implements UserService , UserDetailsService {
      * @return 实例对象
      */
     @Override
-    public User insert(User user) {
-        this.userDao.insert(user);
-        userDao.insertUserRoles(user);
+    public User save(User user) {
+        this.userDao.save(user);
         return user;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param user 实例对象
-     * @return 实例对象
-     */
-    @CacheEvict(cacheNames = "UserService_queryById")
-    @Override
-    public User update(User user) {
 
-        this.userDao.update(user);
-        userDao.insertUserRoles(user);
-        return this.queryById(user.getId());
-    }
 
     /**
      * 通过主键删除数据
@@ -100,37 +89,19 @@ public class UserServiceImpl implements UserService , UserDetailsService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.userDao.deleteById(id) > 0;
+    public void deleteById(Integer id) {
+         this.userDao.deleteById(id);
     }
 
-    @Override
-    public User queryUserAndRoleById(Integer id) {
-        return userDao.queryUserAndRoleById(id);
-    }
 
-    @Override
-    public int insertUsers(List<User> users) {
-        int i = userDao.insertUsers(users);
-        userDao.insertUsersRoles(users);
-        return i;
-    }
+
 
     @Override
     public User findByUserName(String userName) {
         return userDao.findByUserName(userName);
     }
 
-    @Override
-    public User save(User user) {
-        User insert;
-        if (user.getId()==null){
-            insert = insert(user);
-        }else {
-            insert = update(user);
-        }
-        return insert;
-    }
+
 
     @Override
     public void saveAll(Iterable<User> users) {

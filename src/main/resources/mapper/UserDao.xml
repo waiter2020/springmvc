@@ -131,7 +131,7 @@
     </update>
 
     <!--通过主键删除-->
-    <delete id="deleteById">
+    <delete id="deleteByUserId">
         delete from springmvc.user where id = #{id}
     </delete>
 
