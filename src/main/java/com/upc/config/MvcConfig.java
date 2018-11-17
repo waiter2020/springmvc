@@ -1,7 +1,11 @@
 package com.upc.config;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
@@ -11,6 +15,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContextListener;
+import javax.servlet.ServletRegistration;
+import javax.servlet.annotation.WebFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +27,10 @@ import java.util.List;
  *
  * @author waiter
  */
+
 @EnableWebMvc
 @Configuration
+@ComponentScan(basePackages = "com.*.controller")
 public class MvcConfig implements WebMvcConfigurer {
     /**
      * 视图控制
@@ -31,13 +41,17 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login.jsp");
         registry.addViewController("/index").setViewName("index.jsp");
         registry.addViewController("/edit/edit").setViewName("edit/edit.jsp");
-        registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/register").setViewName("register");
-        registry.addViewController("/error/404").setViewName("error/404");
-        registry.addViewController("/events").setViewName("events");
-        registry.addViewController("/single").setViewName("single");
-        registry.addViewController("/contact").setViewName("contact");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/404").setViewName("404");
+        registry.addViewController("/about").setViewName("about");
+        registry.addViewController("/article").setViewName("article");
+        registry.addViewController("/detail").setViewName("detail");
+        registry.addViewController("/resource").setViewName("resource");
+        registry.addViewController("/timeline").setViewName("timeline");
+        registry.addViewController("/admin/index").setViewName("admin/index");
+        registry.addViewController("/admin/user/change").setViewName("admin/user/change");
+
 
         registry.addViewController("/editor/examples/index").setViewName("editor/examples/index.jsp");
         registry.addViewController("/editor/examples/simple").setViewName("editor/examples/simple.jsp");
@@ -105,6 +119,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
+        registry.addResourceHandler("/plug/**").addResourceLocations("/static/plug/");
+
+
+
+        registry.addResourceHandler("/admin/**").addResourceLocations("/templates/admin/");
+
 
         registry.addResourceHandler("/editor/css/**").addResourceLocations("/WEB-INF/editor/css/");
         registry.addResourceHandler("/editor/js/**").addResourceLocations("/WEB-INF/editor/js/");
@@ -127,5 +147,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
 
     }
+
+
+
+
 
 }

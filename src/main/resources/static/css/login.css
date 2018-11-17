@@ -1,130 +1,141 @@
-/*.backgroudPic{*/
-    /*background: url("./bg.png");*/
-/*}*/
-html,body{
-    margin:0;
-    border:0;
-    height: 100%;
-}
-.bgpic{
-    height:100%;
-    width:100%;
-    background: url("../images/bg.jpg");
-    background-size:200% 200%;
-}
-.backfiler{
-    height:70%;
-    width:100%;
-    padding-top:15%;
-    background: linear-gradient(to top right, rgba(255, 0, 0, .6) , rgba(0, 255, 0, .6)); /* 标准的语法 */
+/** EasyWeb */
 
-}
-.backfiler>.loginBG{
-    margin:0 auto;
-    height:400px;
-    width:800px;
-    background: url("../images/bg.jpg") top;
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: #2f2f2f 1px 1px 100px;
-}
-.loginFiler{
-    height:100%;
-    width:100%;
-    background: rgba(0,0,255,.5);
-
+body {
+    background-image: url("../images/bg_login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-
-/**左侧样式**/
-.backfiler>.loginBG>.loginFiler>.left{
-    height:100%;
-    width:50%;
-    opacity: .4;
-    color: black;
-    float: left;
-}
-.backfiler>.loginBG>.loginFiler>.left>h1{
-    font-family:YaHeiConsola;
-    font-size:80px;
+.login-wrapper, body, html {
+    height: 100%
 }
 
+.login-wrapper {
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
+.login-body {
+    padding: 10px 10px 40px 10px;
+}
 
-.backfiler>.loginBG>.loginFiler>.right{
-    height:100%;
-    width:50%;
-    background: white;
+.login-body > .layui-card {
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.login-body .layui-card-header {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.login-body .layui-form-pane .layui-form-label {
+    width: 48px;
+}
+
+.login-body .layui-form-pane .layui-input-block {
+    margin-left: 48px;
+}
+
+.login-body .login-captcha {
+    width: 100%;
+    cursor: pointer;
+}
+
+.login-body .login-other > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.login-body .login-other .layui-icon {
+    position: relative;
+    top: 2px;
+    font-size: 26px;
+}
+
+.login-body .login-other a:hover {
+    opacity: .8;
+}
+
+.layui-icon-login-qq {
+    color: #3492ED
+}
+
+.layui-icon-login-wechat {
+    color: #4DAF29
+}
+
+.layui-icon-login-weibo {
+    color: #CF1900
+}
+
+/** 底部样式 */
+.login-footer {
+    text-align: center;
+    line-height: 30px;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding-bottom: 20px;
+}
+
+.login-footer span {
+    padding: 0 5px
+}
+
+.login-footer a {
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.login-footer a:hover {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/** 头部样式 */
+.login-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.85) !important;
+    padding: 10px;
+}
+
+.login-header img {
+    height: 40px;
+}
+
+/** 移动设备样式 */
+@media screen and (min-height: 590px) {
+    .login-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (min-height: 670px) {
+    .login-body {
+        padding: 110px 10px 40px 10px;
+    }
+}
+
+/** 辅助样式 */
+.layui-link {
+    color: #029789 !important;
+}
+
+.layui-link:hover {
+    opacity: .8;
+}
+
+.pull-right {
     float: right;
 }
-.backfiler>.loginBG>.loginFiler>.right>h1 {
-    font-family: "Microsoft YaHei UI Light";
-    text-align: center;
-    color: #000;
-}
-label{
-    font-family:"Microsoft YaHei UI";
-}
-form{
-    width:100%;
-    margin:20px auto;
-    padding:4%;
-}
-form>input{
 
-    width:80%;
-    border:0;
-    border-bottom: 1px solid gray;
-    margin:10px auto;
-    outline:none;
-    height:35px;
-    font-size:30px;
-    font-family: "Microsoft YaHei UI Light";
-    
-}
-
-form>.loginBtn{
-    font-family: "Microsoft YaHei UI Light";
-    margin:20px;
-    width:100px;
-    height:30px;
-    border:none;
-    background: green;
-    border-radius: 15px;
-    box-shadow: green 1px 1px 15px;
-    font-size:17px;
-    color: white;
-    cursor:pointer;
-    transition: background,box-shadow .35s,.35s;
-
-}
-form>.loginBtn:hover{
-    background: purple;
-    box-shadow: purple 1px 1px 15px;
-}
-
-h4{
-    text-align: center;
-    color: red;
-}
-
-
-#registerBtn{
-    font-family: "Microsoft YaHei UI Light";
-    margin:20px;
-    width:100px;
-    height:30px;
-    border:none;
-    background: green;
-    border-radius: 15px;
-    box-shadow: green 1px 1px 15px;
-    font-size:17px;
-    color: white;
-    cursor:pointer;
-    transition: background,box-shadow .35s,.35s;
-
-}
-#registerBtn:hover{
-    background: purple;
-    box-shadow: purple 1px 1px 15px;
+.inline-block {
+    display: inline-block;
 }

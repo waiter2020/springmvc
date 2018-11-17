@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="blog-nav layui-header" th:fragment="top" >
+    <div class="blog-container">
+        <!-- QQ互联登陆 -->
+        <a th:href="@{/admin/index}" class="blog-user">
+           后台管理
+        </a>
+        <a href="javascript:;" class="blog-user layui-hide">
+            <img src="../images/Absolutely.jpg" alt="Absolutely" title="Absolutely" />
+        </a>
+        <!-- 不落阁 -->
+        <a class="blog-logo" th:href="@{/index}">WAITER</a>
+        <!-- 导航菜单 -->
+        <ul class="layui-nav" lay-filter="nav">
+            <li th:class="${activeUri=='index'?'layui-nav-item layui-this':'layui-nav-item'}" >
+                <a th:href="@{/index}"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+            </li>
+            <li th:class="${activeUri=='article'?'layui-nav-item layui-this':'layui-nav-item'}">
+                <a th:href="@{/article}"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
+            </li>
+            <li th:class="${activeUri=='resource'?'layui-nav-item layui-this':'layui-nav-item'}">
+                <a th:href="@{/resource}"><i class="fa fa-tags fa-fw"></i>&nbsp;资源分享</a>
+            </li>
+            <li th:class="${activeUri=='timeline'?'layui-nav-item layui-this':'layui-nav-item'}">
+                <a th:href="@{/timeline}"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
+            </li>
+            <li th:class="${activeUri=='about'?'layui-nav-item layui-this':'layui-nav-item'}">
+                <a th:href="@{/about}"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+            </li>
+        </ul>
+        <!-- 手机和平板的导航开关 -->
+        <a class="blog-navicon" href="javascript:;">
+            <i class="fa fa-navicon"></i>
+        </a>
+    </div>
+</nav>
+
+
+<!-- 底部 -->
+<footer class="blog-footer" th:fragment="footer" >
+    <p><span>Copyright</span><span>&copy;</span><span>2018</span><a href="#">WAITER</a><span>Design By WEI</span></p>
+    <p><a href="http://www.miibeian.gov.cn/" target="_blank">鲁ICP备18049690号</a></p>
+</footer>
+
+<!--侧边导航-->
+<ul class="layui-nav layui-nav-tree layui-nav-side blog-nav-left layui-hide" lay-filter="nav" th:fragment="left">
+
+    <li th:class="${activeUri=='index'?'layui-nav-item layui-this':'layui-nav-item'}" >
+        <a th:href="@{/index}"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+    </li>
+    <li th:class="${activeUri=='article'?'layui-nav-item layui-this':'layui-nav-item'}">
+        <a th:href="@{/article}"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
+    </li>
+    <li th:class="${activeUri=='resource'?'layui-nav-item layui-this':'layui-nav-item'}">
+        <a th:href="@{/resource}"><i class="fa fa-tags fa-fw"></i>&nbsp;资源分享</a>
+    </li>
+    <li th:class="${activeUri=='timeline'?'layui-nav-item layui-this':'layui-nav-item'}">
+        <a th:href="@{/timeline}"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
+    </li>
+    <li th:class="${activeUri=='about'?'layui-nav-item layui-this':'layui-nav-item'}">
+        <a th:href="@{/about}"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+    </li>
+</ul>
+<!--分享窗体-->
+<div class="blog-share layui-hide" th:fragment="share">
+    <div class="blog-share-body">
+        <div style="width: 200px;height:100%;">
+            <div class="bdsharebuttonbox">
+                <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                <a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

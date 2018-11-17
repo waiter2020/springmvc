@@ -1,259 +1,176 @@
-<!DOCTYPE html>
-<html lang="en"
-	  xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-<title>Home</title>
-	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script th:src="@{/js/jquery.min.js}"></script>
-	<!-- Custom Theme files -->
-	<!--theme-style-->
-	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
-	<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
-<link href='http://fonts.proxy.ustclug.org/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-<!--//fonts-->
-<script type="text/javascript" th:src="@{js/move-top.js}"></script>
-<script type="text/javascript" th:src="@{js/easing.js}"></script>
-				<script type="text/javascript">
-					jQuery(document).ready(function($) {
-						$(".scroll").click(function(event){		
-							event.preventDefault();
-							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-						});
-					});
-					</script>
+﻿<!--
+    
+ @Name：不落阁整站模板源码
+ @Author：Absolutely
+ @Site：http://www.lyblogs.cn
 
+ -->
+
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>WAITER</title>
+    <link rel="shortcut icon" th:href="@{/images/Logo_40.png}" type="image/x-icon">
+    <!--Layui-->
+    <link th:href="@{/plug/layui/css/layui.css}" rel="stylesheet" />
+    <!--font-awesome-->
+    <link th:href="@{/plug/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+    <!--全局样式表-->
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <!-- 本页样式表 -->
+    <link th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
 <body>
-	<!--header-->
-	<div th:replace="common/top::topbar(activeUri='index')"></div>
-		<!---->
-		<div class="container">
-			<div class="banner">
-				<div class="banner-matter">
-					<i class="line"> </i>
-						<h1>where you choose the winner</h1>
-					<i class="line"> </i>
-				</div>
-				<p class="help">Help shape the next awi awards ceremony.  click the icon to tell us which of these creatives you Love / Don't Love.</p>
-				<!--manage-->
-                <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-		 <div class="banner-top">
-			<div class="wmuSlider example1">
-				   <div class="wmuSliderWrapper">
-					   <article style="position: absolute; width: 100%; opacity: 0;">
-							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="/images/banner.jpg" alt=""  /></a>
-								<div class="dummy-text">
-									<ul class="social-circle">			
-										<li><a href="single.html"><i > </i></a></li>
-										<li><a href="single.html"><i class="break"> </i></a></li>
-									</ul>
-									<div class="doe">
-										<h6>the huntress</h6>
-										<span>By <b>Jane Doe</b></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at auctor orci. Nullasc arcu lorem, consectetur eu tristique idnui hendrerit at massa. Vivamus velit ante, blandit eget suscipit ut, volutpat ac erasti augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere .</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-					 	</article>
-					 	 <article style="position: absolute; width: 100%; opacity: 0;">
-							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="/images/banner1.jpg" alt=""  /></a>
-								<div class="dummy-text">
-									<ul class="social-circle">			
-										<li><a href="single.html"><i > </i></a></li>
-										<li><a href="single.html"><i class="break"> </i></a></li>
-									</ul>
-									<div class="doe">
-										<h6>the huntress</h6>
-										<span>By <b>Jane Doe</b></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at auctor orci. Nullasc arcu lorem, consectetur eu tristique idnui hendrerit at massa. Vivamus velit ante, blandit eget suscipit ut, volutpat ac erasti augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere .</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-					 	</article>
-					 	 <article style="position: absolute; width: 100%; opacity: 0;">
-							<div class="banner-bottom">
-								<a href="single.html"><img class="img-responsive line-in" src="/images/banner.jpg" alt=""  /></a>
-								<div class="dummy-text">
-									<ul class="social-circle">			
-										<li><a href="single.html"><i > </i></a></li>
-										<li><a href="single.html"><i class="break"> </i></a></li>
-									</ul>
-									<div class="doe">
-										<h6>the huntress</h6>
-										<span>By <b>Jane Doe</b></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at auctor orci. Nullasc arcu lorem, consectetur eu tristique idnui hendrerit at massa. Vivamus velit ante, blandit eget suscipit ut, volutpat ac erasti augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere .</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-					 	</article>
-					 </div>
-	               
-	            </div>
-	            <script th:src="@{/js/jquery.wmuSlider.js}"></script>
-				<script>				
-					 $('.example1').wmuSlider({
-						 pagination:false,
-					});         
-				</script> 	
-          	         
-				</div>
-			</div>
-		</div>
-		<!---->
-			<div class="container">
-			<div class="content">
-				<div class="content-top">
-					<h2>inSPIRED, inTELLIGENT, inCREDIBLE <span>(latest entries)</span></h2>
-					<i class="line"> </i>
-				</div>
-				<p class="you">award the inspired brings together some of today's brightest artists, designers and photographers for your votes. Browse the profiles of the most recent contributors and cast your vote for the final 10 to reach our ceremony.</p>
-				<div class="top-on">
-				<div class="content-bottom">
-					<div class="col-md-6 top-pic">
-						<div class="col-md-6 bottom-pic">
-						<a href="single"><img class="img-responsive " src="/images/pic.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Jane Doe</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="col-md-6 top-pic">
-					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic1.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Anne Other</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="content-bottom">
-					<div class="col-md-6 top-pic">
-						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic2.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Joe Bloggs</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="col-md-6 top-pic">
-					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic3.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>John Somebody</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="content-bottom">
-					<div class="col-md-6 top-pic">
-						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic4.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Timothy Consecteur</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="col-md-6 top-pic">
-					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic5.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Laura Ipsum</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="content-bottom">
-					<div class="col-md-6 top-pic">
-						<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic6.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Pierre Lorem</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="col-md-6 top-pic">
-					<div class="col-md-6 bottom-pic">
-						<a href="single.html"><img class="img-responsive " src="/images/pic7.jpg" alt=""  /></a>
-						</div>
-						<div class="col-md-6 bottom-doe">
-						<h6>Wan More</h6>
-							<p>Donec tincidunt aliquam urna, in lobortis lorem eleifend eu. pellentesque id emet venenatis erat. Mauris nisl tellus, lorem rhoncus ut iaculis sit amet, imperdietium quis eros. Ut mattis, est sed mattis eras viverra, turpis nibh tempus tellus.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				</div>
-				<i class="line"> </i>
-				<!---->
-				<!--<div class="bottom-content">-->
-					<!--<div class="col-md-6 award">-->
-						<!--<h3>awi awards ceremony</h3>						-->
-						<!--<p>The ‘Award The Inspired’ awards ceremony. The Fuji Film Gallery, Holland. </p>-->
-						<!--<div class="inverted">-->
-							<!--<p class="date">4th October to 12 October 2012 10am to 4pm.</p>                       -->
-							<!--<a href="single.html" class="only">Invitation Only</a>-->
-							<!--<div class="clearfix"> </div>-->
-						<!--</div>-->
-						<!--<a href="single.html"><img class="img-responsive " src="/images/po.jpg" alt=""  />-->
-						<!--<div class="share">-->
-							<!--<p>Share <i class="down"> </i></p>-->
-							<!--<ul class="social-in tin-in">-->
-								<!--<li><i> </i></li>						-->
-								<!--<li><i class="tin"> </i></li>-->
-								<!--<li><i class="message"> </i></li>-->
-							<!--</ul>-->
-							<!--</a>-->
-							<!--<div class="clearfix"> </div>-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div class="col-md-6 award-bottom">-->
-						<!--<h3>Have You Been Invited?</h3>-->
-						<!--<p>If you have an awards ceremony invitation code, please enter it along with your e-mail address in the form below.</p>-->
-						<!--<form >					    	-->
-						   <!--<input type="text" value="Your E-mail..">-->
-						   <!--<input type="text" value="Invitation Code..">-->
-						   <!--<input type="submit" value="Submit RSVP">	-->
-						   <!--</form>-->
-						   <!--<p><a href="single.html">Don’t have an invitation?</a></p>-->
-						   <!--<a href="index.html" class="logo-bottom"><img src="/images/logo-1.png" alt="" ></a>-->
-					<!--</div>-->
-					<!--<div class="clearfix"> </div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--&lt;!&ndash;&ndash;&gt;-->
+    <!-- 导航 -->
+    <div th:replace="common/common::top(activeUri='index')"></div>
+    <!-- 主体（一般只改变这里的内容） -->
+    <div class="blog-body">
+        <!-- canvas -->
+        <canvas id="canvas-banner" style="background: #393D49;"></canvas>
+        <!--为了及时效果需要立即设置canvas宽高，否则就在home.js中设置-->
+        <script type="text/javascript">
+            var canvas = document.getElementById('canvas-banner');
+            canvas.width = window.document.body.clientWidth - 10;//减去滚动条的宽度
+            if (screen.width >= 992) {
+                canvas.height = window.innerHeight * 1 / 3;
+            } else {
+                canvas.height = window.innerHeight * 2 / 7;
+            }
+        </script>
+        <!-- 这个一般才是真正的主体内容 -->
+        <div class="blog-container">
+            <div class="blog-main">
+                <!-- 网站公告提示 -->
+                <div class="home-tips shadow">
+                    <i style="float:left;line-height:17px;" class="fa fa-volume-up"></i>
+                    <div class="home-tips-container">
+                        <span style="color: #009688">偷偷告诉大家，本博客的后台管理也正在制作，为大家准备了游客专用账号！</span>
+                        <span style="color: red">网站新增留言回复啦！使用QQ登陆即可回复，人人都可以回复！</span>
+                        <span style="color: red">如果你觉得网站做得还不错，来Fly社区点个赞吧！<a href="http://fly.layui.com/case/2017/" target="_blank" style="color:#01AAED">点我前往</a></span>
+                        <span style="color: #009688">不落阁 &nbsp;—— &nbsp;一个.NET程序员的个人博客，新版网站采用Layui为前端框架，目前正在建设中！</span>
+                    </div>
+                </div>
+                <!--左边文章列表-->
+                <div class="blog-main-left">
+                    <div class="article shadow">
+                        <div class="article-left">
+                            <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！" />
+                        </div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <a th:href="@{detail}">基于laypage的layui扩展模块（pagesize.js）！</a>
+                            </div>
+                            <div class="article-abstract">
+                                该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="article-footer">
+                            <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
+                            <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
+                            <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
+                            <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                            <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                        </div>
+                    </div>
 
-	<div th:replace="common/footer::footer"></div>
+                </div>
+                <!--右边小栏目-->
+                <div class="blog-main-right">
+                    <div class="blogerinfo shadow">
+                        <div class="blogerinfo-figure">
+                            <img src="../images/Absolutely.jpg" alt="Absolutely" />
+                        </div>
+                        <p class="blogerinfo-nickname">WAITER</p>
+                        <p class="blogerinfo-introduce">一枚90后程序员，JAVA开发工程师</p>
+                        <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;中国 - 青岛</p>
+                        <hr />
+                        <div class="blogerinfo-contact">
+                            <a target="_blank" title="QQ交流" href="javascript:layer.msg('启动QQ会话窗口')"><i class="fa fa-qq fa-2x"></i></a>
+                            <a target="_blank" title="给我写信" href="mailto:1403976416@qq.com"><i class="fa fa-envelope fa-2x"></i></a>
+                            <a target="_blank" title="github" href="https://github.com/waiter2020"><i class="fa fa-git fa-2x"></i></a>
+                        </div>
+                    </div>
+                    <div></div><!--占位-->
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">热文排行</div>
+                        <ul class="fa-ul blog-module-ul">
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">Web安全之跨站请求伪造CSRF</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC 防范跨站请求伪造（CSRF）</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">常用正则表达式</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">EF CodeFirst数据迁移常用指令</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">浅谈.NET Framework基元类型</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">C#基础知识回顾-扩展方法</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（一）（HTML篇）</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（二）（CSS篇）</a></li>
+                        </ul>
+                    </div>
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">最近分享</div>
+                        <ul class="fa-ul blog-module-ul">
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="http://pan.baidu.com/s/1c1BJ6Qc" target="_blank">Canvas</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="http://pan.baidu.com/s/1kVK8UhT" target="_blank">pagesize.js</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://pan.baidu.com/s/1mit2aiW" target="_blank">时光轴</a></li>
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://pan.baidu.com/s/1nuAKF81" target="_blank">图片轮播</a></li>
+                        </ul>
+                    </div>
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">一路走来</div>
+                        <dl class="footprint">
+                            <dt>2017年03月12日</dt>
+                            <dd>新增留言回复功能！人人都可参与回复！</dd>
+                            <dt>2017年03月10日</dt>
+                            <dd>不落阁2.0基本功能完成，正式上线！</dd>
+                            <dt>2017年03月09日</dt>
+                            <dd>新增文章搜索功能！</dd>
+                            <dt>2017年02月25日</dt>
+                            <dd>QQ互联接入网站，可QQ登陆发表评论与留言！</dd>
+                        </dl>
+                    </div>
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">后台记录</div>
+                        <dl class="footprint">
+                            <dt>2017年03月16日</dt>
+                            <dd>分页新增页容量控制</dd>
+                            <dt>2017年03月12日</dt>
+                            <dd>新增管家提醒功能</dd>
+                            <dt>2017年03月10日</dt>
+                            <dd>新增Win10快捷菜单</dd>
+                        </dl>
+                    </div>
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">友情链接</div>
+                        <ul class="blogroll">
+                            <li><a target="_blank" href="http://www.layui.com/" title="Layui">Layui</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div th:replace="common/common::footer"></div>
+    <div th:replace="common/common::left(activeUri='index')"></div>
+    <div th:replace="common/common::share"></div>
+
+
+
+
+    <!--遮罩-->
+    <div class="blog-mask animated layui-hide"></div>
+    <!-- layui.js -->
+    <script th:src="@{/plug/layui/layui.js}"></script>
+    <!-- 全局脚本 -->
+    <script th:src="@{/js/global.js}"></script>
+    <!-- 本页脚本 -->
+    <script th:src="@{/js/home.js}"></script>
 </body>
 </html>
