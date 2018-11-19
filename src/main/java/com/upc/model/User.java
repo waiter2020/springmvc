@@ -1,12 +1,14 @@
 package com.upc.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +37,9 @@ public class User implements Serializable , UserDetails {
     private String phone;
 
     private String email;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date birth;
 
     private Boolean enable;
 

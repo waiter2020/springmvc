@@ -872,6 +872,7 @@ body {
         }
 
         .blog-comment .info span {
+            float:left;
             padding-right: 5px;
         }
 
@@ -897,7 +898,8 @@ body {
     width: 45px;
     height: 45px;
     margin: 5px 5px 5px 0;
-    position: absolute;
+    /*position: absolute;*/
+    float:left;
     border-radius: 50px;
 }
 

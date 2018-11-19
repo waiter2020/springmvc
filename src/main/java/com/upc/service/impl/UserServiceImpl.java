@@ -53,10 +53,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     public User queryById(Integer id) {
         System.out.println("访问");
         Optional<User> byId = this.userDao.findById(id);
-        if (!byId.isPresent()){
-            return null;
-        }
-        return byId.get();
+        return byId.orElse(null);
     }
 
     /**
@@ -76,8 +73,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
      */
     @Override
     public User save(User user) {
-        this.userDao.save(user);
-        return user;
+        return this.userDao.save(user);
     }
 
 

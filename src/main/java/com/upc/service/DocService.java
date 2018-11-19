@@ -13,4 +13,6 @@ public interface DocService {
     public Doc save(Doc doc);
 
     public List<Doc> findAll();
+
+    public List<Doc> getTop10();
 }

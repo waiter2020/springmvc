@@ -5,10 +5,14 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
 
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.convert.DbRefResolver;
@@ -26,7 +30,11 @@ import java.util.List;
  * @author waiter
  */
 @Configuration
-public class MongoConfig {
+public class MongoConfig extends AbstractMongoConfiguration {
+    @Autowired
+    private ApplicationContext appContext;
+
+    @Override
     @Bean
     public MongoClient mongoClient(){
         ServerAddress serverAddress = new ServerAddress("127.0.0.1",27017);
@@ -48,8 +56,9 @@ public class MongoConfig {
     }
 
     @Bean
-    public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory){
-        return new MongoTemplate(mongoDbFactory);
+    public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
+                                       MappingMongoConverter mappingMongoConverter){
+        return new MongoTemplate(mongoDbFactory,mappingMongoConverter);
     }
 
 
@@ -64,9 +73,18 @@ public class MongoConfig {
         return mappingConverter;
     }
 
+    @Override
+    protected String getDatabaseName() {
+        return "test";
+    }
+
+    @Override
     @Bean
     public MongoMappingContext mongoMappingContext(){
-        return new MongoMappingContext();
+        MongoMappingContext mongoMappingContext = new MongoMappingContext();
+        mongoMappingContext.setApplicationContext(appContext);
+        return mongoMappingContext;
     }
+
 
 }

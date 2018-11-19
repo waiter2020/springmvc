@@ -55,7 +55,7 @@
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<!--需要区分是员工修改还是添加；-->
 					<h4 class="btn btn-sm btn-success" th:if="${msg}" th:text="${msg}"></h4>
-					<form th:action="@{/change}" method="post">
+					<form th:action="@{/user/change}" method="post">
 						<!--发送put请求修改员工数据-->
 						<!--
 						1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
@@ -65,11 +65,16 @@
 						<input type="hidden" name="id" th:if="${info!=null}" th:value="${info.id}">
 						<div class="form-group">
 							<label>用户名</label>
-							<input name="username" type="text" disabled="disabled" class="form-control"  th:value="${info!=null}?${info.username}">
+							<input name="userName" type="text" disabled="disabled" class="form-control"  th:value="${info!=null}?${info.userName}">
+						</div>
+						<input type="hidden" name="id" th:if="${info!=null}" th:value="${info.id}">
+						<div class="form-group">
+							<label>用户名</label>
+							<input name="nickName" type="text"  class="form-control"  th:value="${info!=null}?${info.nickName}">
 						</div>
 						<div class="form-group">
 							<label>电话</label>
-							<input name="phoneNumber" type="number" class="form-control"  th:value="${info!=null}?${info.phoneNumber}">
+							<input name="phone" type="number" class="form-control"  th:value="${info!=null}?${info.phone}">
 						</div>
 						<div class="form-group">
 							<label>邮箱</label>
@@ -79,10 +84,7 @@
 							<label>生日</label>
 							<input name="birth" type="date" class="form-control"  th:value="${info!=null}?${#dates.format(info.birth, 'yyyy-MM-dd')}">
 						</div>
-						<div class="form-group">
-							<label>家庭组</label>
-							<input disabled="disabled" type="text" class="form-control"  th:value="${info.family!=null}?${info.family.familyName}">
-						</div>
+
 						<button type="submit" class="btn btn-primary" th:text="修改"></button>
 						<a th:href="@{/user/change_pwd}"  class="btn btn-primary" >修改密码</a>
 					</form>

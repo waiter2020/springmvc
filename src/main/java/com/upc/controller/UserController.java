@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * (User)表控制层
@@ -57,6 +58,21 @@ public class UserController {
             return "register";
         }
         return "login";
+    }
+
+    @GetMapping("/info")
+    public String info(HttpServletRequest request,Model model){
+        User byUserName = userService.findByUserName(request.getRemoteUser());
+        model.addAttribute("info",byUserName);
+        return "/admin/user/info";
+    }
+
+    @ResponseBody
+    @PostMapping("/add")
+    public Object add(User user){
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setEnable(true);
+        return userService.save(user);
     }
 
 }

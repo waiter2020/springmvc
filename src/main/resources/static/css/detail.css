@@ -16,10 +16,18 @@
 .article-detail-title {
     text-align: center;
     margin: 20px 0px;
-    color: white;
+    color: bisque;
     font-weight: 700;
     text-shadow: 0 0 8px #000000;
     font-size: 24px;
+}
+.article-detail-subTitle {
+    text-align: center;
+    margin: 20px 0px;
+    color: black;
+    font-weight: 500;
+    text-shadow: 0 0 8px #000000;
+    font-size: 18px;
 }
 
 .article-detail-info {

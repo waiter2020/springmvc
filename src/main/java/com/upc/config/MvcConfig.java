@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
@@ -16,6 +17,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRegistration;
 import javax.servlet.annotation.WebFilter;
@@ -51,6 +53,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/timeline").setViewName("timeline");
         registry.addViewController("/admin/index").setViewName("admin/index");
         registry.addViewController("/admin/user/change").setViewName("admin/user/change");
+        registry.addViewController("/admin/edit/edit").setViewName("admin/edit/edit");
 
 
         registry.addViewController("/editor/examples/index").setViewName("editor/examples/index.jsp");
@@ -120,35 +123,41 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
         registry.addResourceHandler("/plug/**").addResourceLocations("/static/plug/");
-
+        registry.addResourceHandler("/editor/**").addResourceLocations("/static/editor/");
 
 
         registry.addResourceHandler("/admin/**").addResourceLocations("/templates/admin/");
 
 
-        registry.addResourceHandler("/editor/css/**").addResourceLocations("/WEB-INF/editor/css/");
-        registry.addResourceHandler("/editor/js/**").addResourceLocations("/WEB-INF/editor/js/");
-        registry.addResourceHandler("/editor/*.js").addResourceLocations("/WEB-INF/editor/");
-        registry.addResourceHandler("/editor/**/*.md").addResourceLocations("/WEB-INF/editor/");
-        registry.addResourceHandler("/editor/images/**").addResourceLocations("/WEB-INF/editor/images/");
-        registry.addResourceHandler("/editor/lib/**").addResourceLocations("/WEB-INF/editor/lib/");
-        registry.addResourceHandler("/editor/fonts/**").addResourceLocations("/WEB-INF/editor/fonts/");
-        registry.addResourceHandler("/editor/plugins/**").addResourceLocations("/WEB-INF/editor/plugins/");
-        registry.addResourceHandler("/editor/src/**").addResourceLocations("/WEB-INF/editor/src/");
-        registry.addResourceHandler("/editor/scss/**").addResourceLocations("/WEB-INF/editor/scss/");
-        registry.addResourceHandler("/editor/languages/**").addResourceLocations("/WEB-INF/editor/languages/");
-        registry.addResourceHandler("/editor/docs/**").addResourceLocations("/WEB-INF/editor/docs/");
-
-        registry.addResourceHandler("/editor/examples/css/**").addResourceLocations("/WEB-INF/editor/examples/css/");
-        registry.addResourceHandler("/editor/examples/js/**").addResourceLocations("/WEB-INF/editor/examples/js/");
-        registry.addResourceHandler("/editor/examples/images/**").addResourceLocations("/WEB-INF/editor/examples/images/");
-        registry.addResourceHandler("/editor/examples/php/**").addResourceLocations("/WEB-INF/editor/examples/php/");
+//        registry.addResourceHandler("/editor/css/**").addResourceLocations("/WEB-INF/editor/css/");
+//        registry.addResourceHandler("/editor/js/**").addResourceLocations("/WEB-INF/editor/js/");
+//        registry.addResourceHandler("/editor/*.js").addResourceLocations("/WEB-INF/editor/");
+//        registry.addResourceHandler("/editor/**/*.md").addResourceLocations("/WEB-INF/editor/");
+//        registry.addResourceHandler("/editor/images/**").addResourceLocations("/WEB-INF/editor/images/");
+//        registry.addResourceHandler("/editor/lib/**").addResourceLocations("/WEB-INF/editor/lib/");
+//        registry.addResourceHandler("/editor/fonts/**").addResourceLocations("/WEB-INF/editor/fonts/");
+//        registry.addResourceHandler("/editor/plugins/**").addResourceLocations("/WEB-INF/editor/plugins/");
+//        registry.addResourceHandler("/editor/src/**").addResourceLocations("/WEB-INF/editor/src/");
+//        registry.addResourceHandler("/editor/scss/**").addResourceLocations("/WEB-INF/editor/scss/");
+//        registry.addResourceHandler("/editor/languages/**").addResourceLocations("/WEB-INF/editor/languages/");
+//        registry.addResourceHandler("/editor/docs/**").addResourceLocations("/WEB-INF/editor/docs/");
+//
+//        registry.addResourceHandler("/editor/examples/css/**").addResourceLocations("/WEB-INF/editor/examples/css/");
+//        registry.addResourceHandler("/editor/examples/js/**").addResourceLocations("/WEB-INF/editor/examples/js/");
+//        registry.addResourceHandler("/editor/examples/images/**").addResourceLocations("/WEB-INF/editor/examples/images/");
+//        registry.addResourceHandler("/editor/examples/php/**").addResourceLocations("/WEB-INF/editor/examples/php/");
 
 
 
     }
 
-
+    @Bean
+    public CommonsMultipartResolver multipartResolver(ServletContext servletContext){
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(servletContext);
+        commonsMultipartResolver.setMaxUploadSize(10000000);
+        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        return commonsMultipartResolver;
+    }
 
 
 
