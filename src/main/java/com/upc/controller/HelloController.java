@@ -23,8 +23,9 @@ public class HelloController {
 
     @RequestMapping(value = {"/","/index"})
     public String hello(Model model){
-        List<Doc> top10 = docService.getTop10();
+        List<Doc> top10 = docService.getNewTop10();
         model.addAttribute("docs",top10);
+        model.addAttribute("hot",docService.getWacthTop8());
         return "index";
     }
 

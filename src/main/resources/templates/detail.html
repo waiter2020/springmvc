@@ -48,8 +48,8 @@
     <div class="blog-body">
         <div class="blog-container">
             <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
-                <a href="home.html" title="网站首页">网站首页</a>
-                <a href="article.html" title="文章专栏">文章专栏</a>
+                <a th:href="@{/index}" title="网站首页">网站首页</a>
+                <a th:href="@{/article}" title="文章专栏">文章专栏</a>
                 <a><cite>[[${doc.title}]]</cite></a>
             </blockquote>
             <div class="blog-main">
@@ -79,9 +79,9 @@
                         <fieldset class="layui-elem-field layui-field-title" style="margin-bottom:0">
                             <legend>来说两句吧</legend>
                             <div class="layui-field-box">
-                                <form class="layui-form blog-editor" action="">
+                                <form id="comment" class="layui-form blog-editor" method="post" th:action="@{/doc/comment/}+${doc.id}">
                                     <div class="layui-form-item">
-                                        <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                                        <textarea name="comment" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
                                     </div>
                                     <div class="layui-form-item">
                                         <button class="layui-btn" lay-submit="formRemark" lay-filter="formRemark">提交评论</button>
@@ -91,16 +91,16 @@
                         </fieldset>
                         <div class="blog-module-title">最新评论</div>
                         <ul class="blog-comment">
-                            <li>
+                            <li th:each="comment:${doc.comments}">
                                 <div class="comment-parent">
                                     <img class="comment-child" src="../images/Absolutely.jpg" alt="absolutely" />
                                     <div class=" info " >
-                                        <span class="username">Absolutely</span>
-                                        <span class="time">2017-03-18 18:46:06</span>
+                                        <span class="username">[[${comment.userName}]]</span>
+                                        <span class="time">[[${#dates.format(comment.create, 'yyyy-MM-dd HH:mm:ss')}]]</span>
                                     </div>
                                     <br/>
                                     <div class="content">
-                                        我为大家做了模拟评论功能！还有，这个评论功能也可以改成和留言一样，但是目前没改，有兴趣可以自己改
+                                        [[${comment.content}]]
                                     </div>
                                 </div>
                             </li>
@@ -160,7 +160,7 @@
     <!-- 比较好用的代码着色插件 -->
     <script src="../js/prettify.js"></script>
     <!-- 本页脚本 -->
-    <script src="../js/detail.js"></script>
+    <script th:src="@{/js/detail.js}"></script>
     <script th:src="@{/editor/examples/js/jquery.min.js}"></script>
     <script th:src="@{/editor/editormd.min.js}"></script>
     <script type="text/javascript">

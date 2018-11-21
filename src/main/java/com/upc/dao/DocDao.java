@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface DocDao extends MongoRepository<Doc, BigInteger> {
     List<Doc> findTop10ByCreateAfterOrderByCreateDesc(Date date);
+    List<Doc> findTop8ByIdIsNotOrderByWatchDesc(BigInteger id);
 }

@@ -1,15 +1,14 @@
 package com.upc.controller;
 
+import com.upc.model.Comment;
 import com.upc.model.Doc;
 
 import com.upc.service.DocService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class DocController {
         this.docService = docService;
     }
 
+    @PreAuthorize("hasRole('普通用户')")
     @PostMapping(value = "/add")
     public String add(Doc doc){
 
@@ -40,8 +40,17 @@ public class DocController {
 
     @GetMapping(value = "/{id}")
     public String getDoc(@PathVariable("id") Doc doc, Model model){
+        doc.setWatch(doc.getWatch()+1);
         model.addAttribute("doc",doc);
+        docService.save(doc);
         return "detail";
+    }
+
+    @ResponseBody
+    @PreAuthorize("hasRole('普通用户')")
+    @PostMapping("/comment/{id}")
+    public Object comment(@PathVariable("id") Doc doc,@RequestBody Comment comment){
+        return docService.addComment(comment,doc);
     }
 
 }

@@ -60,10 +60,10 @@
                 <div  class="blog-main-left">
                     <div th:each="doc:${docs}" class="article shadow">
                         <div class="article-left">
-                            <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！" />
+                            <img src="../images/cover/201703181909057125.jpg" th:alt="${doc.title}" />
                         </div>
                         <div  class="article-right">
-
+                            <textarea th:hidden="true">[[${doc.body}]]</textarea>
                             <div  class="article-title">
                                 <a th:href="@{/doc/}+${doc.id}" ><h2>[[${doc.title}]]</h2></a>
                             </div>
@@ -77,8 +77,8 @@
                             <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;[[${#dates.format(doc.create, 'yyyy-MM-dd')}]]</span>
                             <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;[[${doc.author}]]</span>
                             <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                            <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                            <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                            <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;[[${doc.watch}]]</span>
+                            <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;[[${doc.comments.size()}]]</span>
                         </div>
                     </div>
 
@@ -103,14 +103,14 @@
                     <div class="blog-module shadow">
                         <div class="blog-module-title">热文排行</div>
                         <ul class="fa-ul blog-module-ul">
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">Web安全之跨站请求伪造CSRF</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC 防范跨站请求伪造（CSRF）</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">常用正则表达式</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">EF CodeFirst数据迁移常用指令</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">浅谈.NET Framework基元类型</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">C#基础知识回顾-扩展方法</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（一）（HTML篇）</a></li>
-                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（二）（CSS篇）</a></li>
+                            <li th:each="h:${hot}"><i class="fa-li fa fa-hand-o-right"></i><a th:href="@{/doc/}+${h.id}" th:value="${h.title}">[[${h.title}]]</a></li>
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC 防范跨站请求伪造（CSRF）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">常用正则表达式</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">EF CodeFirst数据迁移常用指令</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">浅谈.NET Framework基元类型</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">C#基础知识回顾-扩展方法</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（一）（HTML篇）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（二）（CSS篇）</a></li>-->
                         </ul>
                     </div>
                     <div class="blog-module shadow">
@@ -173,5 +173,30 @@
     <script th:src="@{/js/global.js}"></script>
     <!-- 本页脚本 -->
     <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/editor/examples/js/jquery.min.js}"></script>
+
 </body>
+<script>
+    var docs = $(".article");
+    for(var i=0;i< docs.length;i++){
+        var text=docs[i].getElementsByTagName("textarea")[0].value;
+        var regexp = /!\[\]\((.*?)\)/g;
+
+        while((result=regexp.exec(text))!==null) {
+
+                var img =docs[i].getElementsByTagName("img")[0];
+                console.log(img);
+                img.src=result[1];
+
+            console.log(result[1])
+        }
+    }
+    // var text=docs[0].getElementsByTagName("textarea");
+    // console.log(text[0].value);
+    // var regexp = /!\[\]\((.*?)\)/g;
+    // var str=text[0].value;
+    // while((result=regexp.exec(str))!==null){
+    //     console.log(result[1])
+    // }
+</script>
 </html>
