@@ -3,6 +3,7 @@ package com.upc.controller;
 import com.upc.model.User;
 import com.upc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,8 +65,10 @@ public class UserController {
     public String info(HttpServletRequest request,Model model){
         User byUserName = userService.findByUserName(request.getRemoteUser());
         model.addAttribute("info",byUserName);
-        return "/admin/user/info";
+        return "admin/user/change";
     }
+
+
 
     @ResponseBody
     @PostMapping("/add")
@@ -73,6 +76,16 @@ public class UserController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnable(true);
         return userService.save(user);
+    }
+
+    @PreAuthorize("hasRole('管理员')")
+    @GetMapping("/list/{page}/{size}/info")
+    public String getList(@PathVariable(required = false) Integer page,
+                          @PathVariable(required = false) Integer size,
+                          Model model){
+
+        model.addAttribute("list",userService.findAll(size==null?10:size,page==null?1:page));
+        return "admin/user/list";
     }
 
 }

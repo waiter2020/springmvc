@@ -2,6 +2,7 @@ package com.upc.service;
 
 import com.upc.model.User;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -46,4 +47,5 @@ public interface UserService {
 
     void saveAll(Iterable<User> users);
 
+    Page<User> findAll(int size,int page);
 }

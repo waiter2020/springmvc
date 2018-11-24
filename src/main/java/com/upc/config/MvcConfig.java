@@ -46,6 +46,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/index").setViewName("index.jsp");
         registry.addViewController("/edit/edit").setViewName("edit/edit.jsp");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/register").setViewName("register");
+
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/404").setViewName("404");
         registry.addViewController("/about").setViewName("about");
@@ -55,6 +57,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/timeline").setViewName("timeline");
         registry.addViewController("/admin/index").setViewName("admin/index");
         registry.addViewController("/admin/user/change").setViewName("admin/user/change");
+        registry.addViewController("/admin/user/list").setViewName("admin/user/list");
         registry.addViewController("/admin/edit/edit").setViewName("admin/edit/edit");
 
 
@@ -131,6 +134,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
 
         registry.addResourceHandler("/admin/**").addResourceLocations("/templates/admin/");
+        registry.addResourceHandler("/admin/**/js/**").addResourceLocations("/templates/admin/");
 
 
 

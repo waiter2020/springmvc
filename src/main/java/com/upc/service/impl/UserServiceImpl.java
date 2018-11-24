@@ -6,6 +6,8 @@ import com.upc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -102,6 +104,12 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     @Override
     public void saveAll(Iterable<User> users) {
         users.forEach(this::save);
+    }
+
+    @Override
+    public Page<User> findAll(int size,int page) {
+        PageRequest of = PageRequest.of(page, size);
+        return userDao.findAll(of);
     }
 
 
