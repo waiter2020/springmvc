@@ -1,14 +1,14 @@
 package com.upc.service.impl;
 
-import com.upc.dao.CommentDao;
+import com.upc.dao.CountDao;
 import com.upc.dao.DocDao;
-import com.upc.model.Comment;
+import com.upc.model.Count;
 import com.upc.model.Doc;
 import com.upc.service.DocService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -21,16 +21,22 @@ import java.util.Locale;
 @Service
 public class DocServiceImpl implements DocService {
     private final DocDao docDao;
-    private final CommentDao commentDao;
+    private final CountDao countDao;
 
     @Autowired
-    public DocServiceImpl(DocDao docDao, CommentDao commentDao) {
+    public DocServiceImpl(DocDao docDao, CountDao countDao) {
         this.docDao = docDao;
-        this.commentDao = commentDao;
+        this.countDao = countDao;
     }
 
     @Override
     public Doc save(Doc doc){
+        if (doc.getWatch()==null) {
+            Count count = new Count();
+            count.setCount(0L);
+            Count save = countDao.save(count);
+            doc.setWatch(save);
+        }
         return docDao.save(doc);
     }
 
@@ -48,22 +54,10 @@ public class DocServiceImpl implements DocService {
 
     @Override
     public List<Doc> getWacthTop8() {
+
         return docDao.findTop8ByIdIsNotOrderByWatchDesc(null);
     }
 
-    @Override
-    public Comment addComment(Comment comment, Doc doc) {
 
-        comment = commentDao.save(comment);
-        List<Comment> comments = doc.getComments();
-        if (comments==null){
-            comments=new ArrayList<>();
-        }
-        comments.add(0,comment);
-        doc.setComments(comments);
-
-        docDao.save(doc);
-        return comment;
-    }
 
 }

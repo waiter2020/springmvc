@@ -1,10 +1,14 @@
 package impl;
 
 
+import com.upc.MyServletInitializer;
+import com.upc.SpringMvcApplication;
+import com.upc.dao.CountDao;
+import com.upc.dao.DocDao;
 import com.upc.dao.RoleRepository;
 import com.upc.dao.UserRepository;
-import com.upc.model.Role;
-import com.upc.model.User;
+import com.upc.model.*;
+import com.upc.service.TypeService;
 import com.upc.service.UserService;
 import org.junit.Test;
 import org.junit.Before; 
@@ -14,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.LinkedList;
@@ -27,8 +32,8 @@ import java.util.List;
 * @version 1.0 
 */
 @RunWith(SpringJUnit4ClassRunner.class) //使用junit4进行测试
-@ContextConfiguration(locations={"classpath:applicationContext.xml","classpath:springmvc-servlet.xml"})
-@EnableWebMvc
+@WebAppConfiguration
+@ContextConfiguration(classes = {MyServletInitializer.class,SpringMvcApplication.class})
 public class UserServiceImplTest { 
 
     @Autowired
@@ -75,10 +80,24 @@ public void testQueryAllByLimit() throws Exception {
 * 
 * Method: insert(User user) 
 * 
-*/ 
+*/
+@Autowired
+    DocDao docDao;
+@Autowired
+    CountDao countDao;
+@Autowired
+    TypeService typeService;
 @Test
 public void testInsert() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
+//    Type type = new Type();
+//    type.setName("测试分类");
+//    final Type save = typeService.save(type);
+//    List<Doc> all = docDao.findAll();
+//    all.forEach(e->{
+//        e.setType(type);
+//        docDao.save(e);
+//    });
 } 
 
 /** 

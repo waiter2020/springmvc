@@ -21,5 +21,5 @@ public interface DocService {
 
 
 
-    Comment addComment(Comment comment, Doc doc);
+
 }

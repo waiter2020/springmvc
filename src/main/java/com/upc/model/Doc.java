@@ -1,5 +1,7 @@
 package com.upc.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.upc.component.BigIntegerJsonSerializer;
 import lombok.Data;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.annotation.*;
@@ -24,16 +26,18 @@ import java.util.List;
 @Document
 public class Doc {
     @Indexed
+    @JsonSerialize(using = BigIntegerJsonSerializer.class)
     private BigInteger id;
     @CreatedBy
     private String author;
     private String title;
     private String subTitle;
     private String body;
-    private Integer watch=0;
     @DBRef
-    @OrderBy("create desc ")
-    private List<Comment> comments = new ArrayList<>() ;
+    private Count watch;
+    @DBRef
+    private Type type;
+
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date create;

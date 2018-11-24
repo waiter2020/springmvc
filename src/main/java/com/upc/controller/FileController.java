@@ -52,7 +52,7 @@ public class FileController {
         try {
             String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
             UUID uuid = UUID.randomUUID();
-             fileName = uuid + file.getOriginalFilename();
+             fileName = uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")) ;
             saveFile("my_file", file.getInputStream(), username, fileName);
         }catch (Exception e){
             res.setSuccess(0);
@@ -70,11 +70,11 @@ public class FileController {
 
     @ResponseBody
     @GetMapping("/get/{fileName}")
-    public ResponseEntity<InputStreamResource> get(@PathVariable("fileName") String fileName,
-                                                   HttpServletResponse response) throws IOException {
+    public ResponseEntity<InputStreamResource> get(@PathVariable("fileName") String fileName) throws IOException {
         GridFSDBFile myFile = retrieveFileOne("my_file", fileName);
-        response.setContentType(fileName.substring(fileName.lastIndexOf(".")+1));
-
+        if (myFile==null){
+            myFile=retrieveFileOne("my_file","fb9b32e9-85b1-4de9-a42a-8d052eb65a67c");
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cache-Control", "cache, store, must-revalidate");
         headers.add("Content-Disposition", "attachment; fileName="+  fileName +";filename*=utf-8''"+ URLEncoder.encode(fileName,"UTF-8"));

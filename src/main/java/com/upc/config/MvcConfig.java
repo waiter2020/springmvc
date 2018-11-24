@@ -12,9 +12,11 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -105,12 +107,14 @@ public class MvcConfig implements WebMvcConfigurer {
         springResourceTemplateResolver.setCharacterEncoding("UTF-8");
         return springResourceTemplateResolver;
     }
-
     @Bean
-    public SpringTemplateEngine templateEngine(SpringResourceTemplateResolver templateResolver){
-        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
-        springTemplateEngine.setTemplateResolver(templateResolver);
-        return springTemplateEngine;
+    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver,
+                                               SpringSecurityDialect securityDialect) {
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setEnableSpringELCompiler(true);
+        engine.addTemplateResolver(templateResolver);
+        engine.addDialect(securityDialect);
+        return engine;
     }
 
     /**
@@ -127,25 +131,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
 
         registry.addResourceHandler("/admin/**").addResourceLocations("/templates/admin/");
-
-
-//        registry.addResourceHandler("/editor/css/**").addResourceLocations("/WEB-INF/editor/css/");
-//        registry.addResourceHandler("/editor/js/**").addResourceLocations("/WEB-INF/editor/js/");
-//        registry.addResourceHandler("/editor/*.js").addResourceLocations("/WEB-INF/editor/");
-//        registry.addResourceHandler("/editor/**/*.md").addResourceLocations("/WEB-INF/editor/");
-//        registry.addResourceHandler("/editor/images/**").addResourceLocations("/WEB-INF/editor/images/");
-//        registry.addResourceHandler("/editor/lib/**").addResourceLocations("/WEB-INF/editor/lib/");
-//        registry.addResourceHandler("/editor/fonts/**").addResourceLocations("/WEB-INF/editor/fonts/");
-//        registry.addResourceHandler("/editor/plugins/**").addResourceLocations("/WEB-INF/editor/plugins/");
-//        registry.addResourceHandler("/editor/src/**").addResourceLocations("/WEB-INF/editor/src/");
-//        registry.addResourceHandler("/editor/scss/**").addResourceLocations("/WEB-INF/editor/scss/");
-//        registry.addResourceHandler("/editor/languages/**").addResourceLocations("/WEB-INF/editor/languages/");
-//        registry.addResourceHandler("/editor/docs/**").addResourceLocations("/WEB-INF/editor/docs/");
-//
-//        registry.addResourceHandler("/editor/examples/css/**").addResourceLocations("/WEB-INF/editor/examples/css/");
-//        registry.addResourceHandler("/editor/examples/js/**").addResourceLocations("/WEB-INF/editor/examples/js/");
-//        registry.addResourceHandler("/editor/examples/images/**").addResourceLocations("/WEB-INF/editor/examples/images/");
-//        registry.addResourceHandler("/editor/examples/php/**").addResourceLocations("/WEB-INF/editor/examples/php/");
 
 
 
